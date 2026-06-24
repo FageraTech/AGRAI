@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project develops a machine learning pipeline for forecasting wholesale maize prices across selected Kenyan counties.
+This project develops a machine learning pipeline for forecasting maize prices across selected counties in kenya.
 
 The forecasting system uses historical market prices, feature engineering techniques, machine learning models, and validation procedures to predict future market prices.
 
