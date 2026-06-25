@@ -1,4 +1,4 @@
-from .tasks import (
+from .task import (
     load_data,
     get_county_data,
     prepare_training_data,

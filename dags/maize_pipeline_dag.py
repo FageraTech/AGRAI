@@ -1,9 +1,18 @@
+import os
+import sys
 from datetime import datetime
 import pandas as pd
 from airflow import DAG
-from airflow.operators.python import PythonOperator
 
-# Import functions from tasks.py
+#Directory 
+ROOT_DIR = "C:/Users/Njoroge/Desktop/maize/"
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
+
+
+# PRODUCTION PROVIDER IMPORTS
+
+from airflow.providers.standard.operators.python import PythonOperator
 from src.pipeline.task import (
     load_data,
     prepare_training_data,
@@ -13,13 +22,13 @@ from src.pipeline.task import (
     TARGET_COUNTIES
 )
 
-# DEFINE ENVIRONMENT FILE PATHS
-BASE_DIR = "C:/Users/Njoroge/Desktop/maize_price_model/data/raw/"
+#  ENVIRONMENT FILE PATHS
+BASE_DIR = f"{ROOT_DIR}data/raw/"
 FILE_1_PATH = f"{BASE_DIR}agriBORA_maize_prices.csv"
 FILE_2_PATH = f"{BASE_DIR}agriBORA_maize_prices_weeks_46_to_51.csv"
 
-MODEL_PATH = "C:/Users/Njoroge/Desktop/maize_price_model/data/Trained_models/best_random_forest_model.pkl"
-OUTPUT_PATH = "C:/Users/Njoroge/Desktop/maize_price_model/data/predictions/weekly_predictions.csv"
+MODEL_PATH = f"{ROOT_DIR}data/Trained_models/best_random_forest_model.pkl"
+OUTPUT_PATH = f"{ROOT_DIR}data/predictions/weekly_predictions.csv"
 
 
 def extract_task(**context):
@@ -42,12 +51,9 @@ def transform_task(**context):
     final_df = prepare_training_data(df1, df2)
     ti.xcom_push(key="features", value=final_df.to_json())
 
-#Saving the prediction and dashboard
+
 def predict_task(**context):
-    """
-    Runs inference and formats the output into a clean, long-form 
-    structure ideal for PowerBI, Tableau, or Streamlit dashboards.
-    """
+    """Runs inference and formats the output into a clean, long-form structure."""
     ti = context["ti"]
     data_json = ti.xcom_pull(task_ids="feature_engineering", key="features")
     feature_df = pd.read_json(data_json)

@@ -11,7 +11,7 @@ TARGET_COUNTIES = [
 ]
 
 MODEL_PATH = (
-    "C:/Users/Njoroge/Desktop/maize_price_model/data/Trained_models/"
+    "C:/Users/Njoroge/Desktop/maize/data/Trained_models/"
     "best_random_forest_model.pkl"
 )
 
