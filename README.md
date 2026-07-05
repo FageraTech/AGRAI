@@ -1,4 +1,4 @@
-# Maize Price Forecasting Pipeline
+# Agricultural Products Pipeline
 
 ## Author
 
@@ -14,20 +14,22 @@ The forecasting system uses historical market prices, feature engineering techni
 
 ### Counties Covered
 
-* Kiambu
+* Kisumu
 * Kirinyaga
-* Mombasa
-* Nairobi
+* Kericho
+* Nyerui
 * Uasin-Gishu
+* Bungoma
+* Narok
 
 ---
 
 ## Project Structure
 
 ```text
-maize_price_model/
+main folder/
 ├── dags/                           # Apache Airflow workflow automation DAG files
-│   └── maize_pipeline_dag.py
+│   └── crop_pipeline_dag.py
 ├── src/pipeline/                   # Core pipeline library files
 │   ├── __init__.py
 │   ├── tasks.py                    # Reusable feature engineering and data loading formulas
@@ -70,6 +72,7 @@ maize_price_model/
 
 * **Selected Model**: Random Forest Regressor
 * **Evaluation Metric**: Mean Absolute Error (MAE)
+* **Evaluation Metric**: Root Measn Squared Error(RMSE)
 
 ---
 
@@ -107,18 +110,19 @@ The files inside the `notebooks/` directory act as an interactive laboratory. Th
 * **Python (3.14+)**: Ensure Python is added to local system's environment variables.
 * **Docker Desktop**: Download and install Docker Desktop. This engine is required to host the Apache Airflow scheduler. **Crucial Windows Setting**: Ensure that the **WSL2 Engine backend** check box remains active during the software's initial configuration setup.
 
-### 2. Virtual Environment Configuration (`nico1`)
+### 2. Virtual Environment Configuration (`n`)
 
-Open your PowerShell terminal inside the `maize_price_model` root directory and execute these instructions sequentially to launch your local environment:
+Open your PowerShell terminal inside the `folder` root directory and execute these instructions sequentially to launch your local environment:
 
 ```powershell
 # Create the virtual sandbox environment
-python -m venv nico1
+python -m venv n
 
 # Activate the virtual environment path mapping link
-\nico1\Scripts\activate
+\n\Scripts\activate
 
 # Upgrade pip to the latest stable edition
+
 python -m pip install --upgrade pip
 
 # Install the required pipeline packages and dependencies
@@ -156,7 +160,7 @@ docker compose up -d
 
 1. Open your web browser window and navigate to: `http://localhost:8080`
 2. Enter the workspace credentials (Default workspace profiles use: `admin` / `admin`).
-3. Locate **`maize_price_forecasting`** inside the dashboard registry list, toggle the pipeline switch to **On**, and click the **Play (Trigger)** icon to test-run the orchestration sequence.
+3. Locate **`main folder`** inside the dashboard registry list, toggle the pipeline switch to **On**, and click the **Play (Trigger)** icon to test-run the orchestration sequence.
 
 ### 6. Visualizing Forecast Results with Streamlit
 

@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="Maize Price Forecast", layout="wide")
-st.title("🌽 agriBORA Weekly Maize Price Forecasting Dashboard")
+st.title("🌽Weekly Maize Price Forecasting Dashboard")
 
 # Points directly to your automated forecasting storage path
 PREDICTIONS_PATH = "data/predictions/weekly_predictions.csv"
@@ -45,3 +45,26 @@ try:
 
 except FileNotFoundError:
     st.warning(f"Waiting for your Airflow DAG or main.py to run and generate the data file at: {PREDICTIONS_PATH}")
+
+# Scrolling Footer Layout
+st.markdown("---")
+footer_html = """
+<style>
+.footer {
+    position: relative; /* Changes from 'fixed' to scroll naturally */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+</style>
+<div class="footer">
+    <p>Developed by <b>FageraTech</b></p>
+</div>
+"""
+st.markdown(footer_html, unsafe_allow_html=True)

@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Ignore local datasets (if you have heavy csv or excel data files)
+*.csv
+*.xlsx
+*.json
+data/

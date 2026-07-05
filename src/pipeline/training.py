@@ -1,7 +1,14 @@
 import joblib
 import pandas as pd
+import sys
+import os
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
+
+# Forces Python to look at the main project folder for imports
+ROOT_DIR = "C:/Users/Njoroge/Desktop/maize_price_model"
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 
 # Import the updated multi-input routines from tasks file
 from src.pipeline.task import load_data, prepare_training_data, split_data
@@ -34,6 +41,6 @@ print("Validation MAE:", mae)
 # Persist the output model binary
 joblib.dump(
     model,
-    "data/Trained_models/best_random_forest_model.pkl"
+    "models/best_random_forest_model.pkl"
 )
 print("Model training complete and successfully saved.")
