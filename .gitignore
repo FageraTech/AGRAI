@@ -52,4 +52,4 @@ Thumbs.db
 *.csv
 *.xlsx
 *.json
-data/
+*.data/
