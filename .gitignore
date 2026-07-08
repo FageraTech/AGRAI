@@ -53,3 +53,4 @@ Thumbs.db
 *.xlsx
 *.json
 *.data/
+models/best_random_forest_model.pkl
